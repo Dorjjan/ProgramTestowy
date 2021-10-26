@@ -1,31 +1,28 @@
 <?php
 class Game{
-    public $i;
-    private $pins;
+    private $pins = 10;
     private $input;
     public $h;
     public $j;
+    public $score;
     public function roll(){
-        do{
-            $this->i = 0;    
-            $this->pins = 10;
+         for($i=0;$i<2;$i++){
             echo "Roll". "\n";
             $this->input = rtrim(fgets(STDIN), "\n");
             settype($this->input, 'integer');
-            $this->h = $this->pins - $this->input;
-            $this->j = $this->h - $this->input;
-            $this->i++;
-
-        } while($this->pins<=0|$this->i=2|$this->h<=0);
+            $this->pins = $this->pins - $this->input;
+            echo "Remaining $this->pins pins". "\n";
+         }
+         
+        
     }
     public function getScore(){
-        $this->j = $j;
-        $j - 20 == -$score;
-        echo "You're score is $score". "\n";
+        $this->j - 20 == $this->score;
+        echo "You're score is $this->score". "\n";
     }
 }
 $game = new Game();
 echo "Let's play a game!". "\n";
 $game->roll();
-
+$game->getScore();
 ?>
