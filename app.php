@@ -5,6 +5,7 @@ class Game{
     private $score;
     private $spare;
     private $strike;
+    private $j = 0;
     public function roll(){
         if($this->pins<=0){
             echo "0 Pins left. Next round". "\n";
@@ -12,22 +13,23 @@ class Game{
         }
         else{
             for($i=0;$i<2;$i++){
-                 if($this->pins<=0 && $i>=1) {
+                 if($this->pins<=0 && $this->j==0) {
                      echo "STRIKE!". "\n";
                      $this->input = readline("");
                      settype($this->input, 'integer');
                      $this->pins = $this->pins - $this->input;
                      $this->strike = $this->strike + $this->input + $this->input;
-                     break;
+                     $this->j++;
                 }  
-                 elseif ($this->pins<=0 && $i=0){
+                 elseif ($this->pins<=0 && $this->j==1){
                      echo "SPARE!". "\n";
                      $this->input = readline("");
                      settype($this->input, 'integer');
                      $this->pins = $this->pins - $this->input;
                      $this->spare = $this->spare + $this->input;
+                     $this->j++;
              }
-                 else{
+                 elseif($this->pins>=0){
                      echo "Roll". "\n";
                      $this->input = readline("");
                      settype($this->input, 'integer');
