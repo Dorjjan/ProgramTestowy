@@ -5,9 +5,10 @@ class Game{
     private $spare;
     private $strike;
     private $score;
-    private $i, $st, $sp;
+    private $i, $st, $sp, $x;
+    private $tab, $round=1;
     public function roll(){
-        echo "Let's roll" . "\n";
+        echo "Let's roll. Round $this->round" . "\n";
         $this->input = readline("");
         settype($this->input, 'integer');
         $this->pins = $this->pins - $this->input;
@@ -62,6 +63,7 @@ class Game{
             echo "Next round" . "\n";
             $this->pins = 10;
             $this->i = 0;
+            $this->round++;
         }
         else{}
     }
@@ -69,6 +71,16 @@ class Game{
         echo "You're score is $this->score". "\n";
         echo "You're strike is $this->strike". "\n";
         echo "You're spare is $this->spare". "\n";
+    }
+    public function finalResult(){
+        $this->tab[$this->x]=$this->input;
+        $this->tab[$this->x++];
+        
+        if($this->round==11)
+        foreach($this->tab as $result)
+        {
+            echo "| $result |";
+        }
     }
 }
 
@@ -81,5 +93,7 @@ $game = new Game();
         $game->spare();
         $game->getScore();
         $game->nextRound();
+        $game->finalResult();
     }
+    
 ?>
